@@ -1,0 +1,151 @@
+:root {
+    --bg-dark: #1a120b;
+    --card-bg: rgba(42, 31, 23, 0.8); /* Dark Brown with transparency */
+    --accent-gold: #c5a880;
+    --text-light: #f5f5f5;
+    --text-muted: #a1a1a1;
+    --border-color: rgba(197, 168, 128, 0.3);
+    --title-font: 'Playfair Display', serif;
+    --body-font: 'Montserrat', sans-serif;
+}
+
+/* --- General Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* You can change the background image here. I used one from unsplash.com */
+    background-image: linear-gradient(rgba(26, 18, 11, 0.85), rgba(26, 18, 11, 0.85)), url('https://images.unsplash.com/photo-1559925393-8be0ec4767c8');
+    background-size: cover;
+    background-position: center;
+    color: var(--text-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* --- Login Card & Container --- */
+.login-container {
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+}
+
+.login-card {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+/* --- Card Header (Icon, Title, Subtitle) --- */
+.card-header .coffee-icon {
+    font-size: 3rem;
+    color: var(--accent-gold);
+    margin-bottom: 15px;
+    display: inline-block;
+    /* Subtle steam animation */
+    animation: steam 3s infinite linear;
+}
+
+@keyframes steam {
+    0% { transform: translateY(0) scale(1); opacity: 0.8; }
+    50% { transform: translateY(-10px) scale(1.1); opacity: 0.4; }
+    100% { transform: translateY(-20px) scale(1.2); opacity: 0; }
+}
+
+.card-header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.card-header p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+}
+
+/* --- Input Fields & Icons --- */
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 15px 14px 45px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-light);
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 10px rgba(197, 168, 128, 0.5);
+}
+
+.input-group input:focus + i {
+    color: var(--accent-gold);
+}
+
+#togglePassword {
+    left: auto;
+    right: 15px;
+    cursor: pointer;
+}
+
+/* --- Button --- */
+button[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background: var(--accent-gold);
+    color: var(--bg-dark);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background: #d4b991; /* A lighter shade of gold */
+    box-shadow: 0 4px 15px rgba(197, 168, 128, 0.4);
+}
+
+/* --- Card Footer --- */
+.card-footer {
+    margin-top: 20px;
+}
+
+.card-footer a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+}
+
+.card-footer a:hover {
+    color: var(--accent-gold);
+    text-decoration: underline;
+}

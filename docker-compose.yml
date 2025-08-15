@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  # The PHP Service
+  php-app:
+    build: . # Build from the Dockerfile in this directory
+    container_name: cocktails-php-app
+    volumes:
+      # Mount the entire project directory into the container
+      - .:/var/www/html
+    depends_on:
+      - mysql-db
+
+  # The Nginx Service
+  nginx:
+    image: nginx:alpine
+    container_name: cocktails-nginx
+    ports:
+      - "8080:80" # Your site will be available on http://localhost:8080
+    volumes:
+      # Mount the entire project directory
+      - .:/var/www/html
+      # Mount our custom Nginx configuration
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php-app
+
+  # The MySQL Database Service
+  mysql-db:
+    image: mysql:8.0
+    container_name: cocktails-mysql-db
+    # This ensures your DB data is saved even if you stop the container
+    restart: unless-stopped
+    environment:
+      # These values are taken directly from your config.php
+      MYSQL_DATABASE: cocktails_db
+      MYSQL_USER: VaibhavSoni
+      MYSQL_PASSWORD: Vaibhav@532
+      # You must also set a root password for the database admin
+      MYSQL_ROOT_PASSWORD: a_strong_root_password_here
+    volumes:
+      # This named volume will persist your database data
+      - db_data:/var/lib/mysql
+
+# Declare the named volume for the database
+volumes:
+  db_data:

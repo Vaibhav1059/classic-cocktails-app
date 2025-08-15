@@ -1,0 +1,177 @@
+    :root {
+        --brand-gold: #D4AF37;
+        --brand-dark: #101010;
+        --brand-light: #f5f5f5;
+        --brand-muted: #aaa;
+    }
+    body {
+        background-color: var(--brand-dark);
+        color: var(--brand-light);
+        box-sizing: border-box; /* Better layout consistency */
+    }
+    *, *::before, *::after {
+        box-sizing: inherit;
+    }
+
+    /* --- HERO SECTION --- */
+    .hero-section {
+        position: relative;
+        height: 70vh;
+        background: linear-gradient(rgba(16, 16, 16, 0.7), rgba(16, 16, 16, 0.9)), url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=1974&auto=format&fit=crop') no-repeat center center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .hero-section h1 {
+        font-size: 4.5rem;
+        color: var(--brand-gold);
+        text-shadow: 2px 2px 15px rgba(0,0,0,0.7);
+    }
+    .hero-section p {
+        font-size: 1.25rem;
+        color: var(--brand-light);
+        max-width: 700px;
+        margin: 1rem auto 0;
+    }
+
+    /* --- GENERAL SECTION STYLES --- */
+    .section-title {
+        color: var(--brand-gold);
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    .section-subtitle {
+        color: var(--brand-muted);
+        margin-bottom: 3rem;
+        font-style: italic;
+    }
+
+    /* --- TIMELINE SECTION (Desktop First) --- */
+    .timeline {
+        position: relative;
+        padding: 2rem 0;
+        max-width: 1000px; /* Constrain width on large screens */
+        margin: 0 auto;
+    }
+    .timeline::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 3px;
+        height: 100%;
+        background-color: var(--brand-gold);
+        opacity: 0.3;
+    }
+    .timeline-item {
+        position: relative;
+        width: 50%;
+        padding: 1rem 2.5rem; /* Increased padding */
+        margin-bottom: 2rem;
+    }
+    .timeline-item:nth-child(odd) {
+        left: 0;
+        text-align: right;
+    }
+    .timeline-item:nth-child(even) {
+        left: 50%;
+    }
+    .timeline-item::after {
+        content: '';
+        position: absolute;
+        top: 1.5rem;
+        width: 20px;
+        height: 20px;
+        background-color: var(--brand-dark);
+        border: 4px solid var(--brand-gold);
+        border-radius: 50%;
+        z-index: 1;
+    }
+    .timeline-item:nth-child(odd)::after {
+        right: -10px; /* Position dot on the line */
+    }
+    .timeline-item:nth-child(even)::after {
+        left: -10px; /* Position dot on the line */
+    }
+    .timeline-content {
+        background: #1a1a1a;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        border: 1px solid #333;
+    }
+    .timeline-content h3 {
+        color: var(--brand-gold);
+    }
+
+    /* --- TEAM CARD SECTION --- */
+    .team-card {
+        background-color: #1a1a1a;
+        border-radius: 1rem;
+        border: 1px solid #333;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-align: center;
+    }
+    .team-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(212, 175, 55, 0.1);
+    }
+    .team-card img {
+        height: 350px;
+        width: 100%; /* Ensure image fills the card width */
+        object-fit: cover;
+        filter: grayscale(50%);
+        transition: filter 0.3s ease;
+    }
+    .team-card:hover img {
+        filter: grayscale(0%);
+    }
+    .team-card .card-body {
+        padding: 1.5rem;
+    }
+    .team-card .card-title {
+        color: var(--brand-gold);
+    }
+    .team-card .card-subtitle {
+        font-weight: 600;
+        color: var(--brand-light);
+    }
+
+    /* --- RESPONSIVE STYLES --- */
+    @media (max-width: 767.5px) {
+        .hero-section {
+            height: auto; /* Allow height to adjust to content */
+            min-height: 50vh;
+            padding: 4rem 1rem; /* Add padding for smaller screens */
+        }
+        .hero-section h1 { font-size: 2.8rem; }
+        .hero-section p { font-size: 1.1rem; }
+        .section-title { font-size: 2.2rem; }
+        
+        /* --- MOBILE TIMELINE FIX --- */
+        .timeline::before {
+            /* Move the line to the left */
+            left: 20px;
+            transform: translateX(0);
+        } 
+        .timeline-item {
+            /* Make all items full-width and add padding on the left for the line */
+            width: 100%;
+            padding-left: 50px;
+            padding-right: 15px;
+        }
+        .timeline-item:nth-child(odd),
+        .timeline-item:nth-child(even) {
+            left: 0;
+            text-align: left;
+        }
+        .timeline-item:nth-child(even)::after {
+        left: 10px; /* Position dot on the line */
+        }
+        .timeline-item::after {
+            left: 10px;
+            transform: translateX(0);
+        }
+    }
